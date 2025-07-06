@@ -9,17 +9,47 @@ const { sendEmail } = require('../services/mailService');
 require('dotenv').config();
 
 // Login Controller
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
+// exports.login = async (req, res) => {
+//   const { email, password } = req.body;
 
+//   try {
+//     const admin = await VendorAdminModel.findByEmail(email);
+//     if (!admin)
+//       return res.status(404).json({ message: 'Vendor Admin not found' });
+
+//     const isMatch = await bcrypt.compare(password, admin.password);
+//     if (!isMatch)
+//       return res.status(400).json({ message: 'Invalid credentials' });
+
+//     const token = jwt.sign(
+//       { id: admin.id, role: admin.role },
+//       process.env.JWT_SECRET,
+//       { expiresIn: '1h' }
+//     );
+
+//     res.status(200).json({ message: 'Login successful', token });
+//   } catch (error) {
+//     res.status(500).json({ message: 'Server error', error });
+//   }
+// };
+exports.login = async (req, res) => {
   try {
+    const { email, password } = req.body;
+    console.log('Login request body:', req.body);
+
     const admin = await VendorAdminModel.findByEmail(email);
-    if (!admin)
+    if (!admin) {
+      console.log('No admin found');
       return res.status(404).json({ message: 'Vendor Admin not found' });
+    }
+
+    console.log('Admin found:', admin);
 
     const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch)
+    if (!isMatch) {
+      console.log('Invalid password');
       return res.status(400).json({ message: 'Invalid credentials' });
+    }
 
     const token = jwt.sign(
       { id: admin.id, role: admin.role },
@@ -29,30 +59,8 @@ exports.login = async (req, res) => {
 
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-};
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const admin = await VendorAdminModel.findByEmail(email);
-    if (!admin)
-      return res.status(404).json({ message: 'Vendor Admin not found' });
-
-    const isMatch = await bcrypt.compare(password, admin.password);
-    if (!isMatch)
-      return res.status(400).json({ message: 'Invalid credentials' });
-
-    const token = jwt.sign(
-      { id: admin.id, role: admin.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    res.status(200).json({ message: 'Login successful', token });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    console.error('Login Error:', error); // 🔥 Very important
+    res.status(500).json({ message: 'Server error' });
   }
 };
 
