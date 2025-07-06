@@ -16,7 +16,7 @@ const io = new Server(server, {
   cors: {
     origin: (origin, callback) => {
       const allowedOrigins = [
-        'https://vendor-admin-theta.vercel.app',
+        'https://vendorad.netlify.app',
         'http://localhost:3000',
       ];
       if (!origin || allowedOrigins.includes(origin)) {
@@ -47,7 +47,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       const allowedOrigins = [
-        'https://vendor-admin-theta.vercel.app',
+        'https://vendorad.netlify.app',
         'http://localhost:3000',
       ];
       if (!origin || allowedOrigins.includes(origin)) {
