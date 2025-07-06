@@ -22,7 +22,7 @@ export const Dashboard = () => {
     const fetchVendorCount = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("https://vendor-admin.onrender.com/api/auth/getAllVendors", {
+        const res = await fetch("https://vendoradmin.onrender.com/api/auth/getAllVendors", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 // Hardcode API base URL (use http://localhost:5000 for local development)
-const API_BASE_URL = "https://vendor-admin.onrender.com";
+const API_BASE_URL = "https://vendoradmin.onrender.com";
 
 export const CreateUser = () => {
   const [formData, setFormData] = useState({

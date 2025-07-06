@@ -7,7 +7,7 @@ import { Pencil, Ban, RotateCw } from "lucide-react";
 import io from "socket.io-client";
 import Swal from "sweetalert2";
 
-const socket = io("https://vendor-admin.onrender.com");
+const socket = io("https://vendoradmin.onrender.com");
 
 const User = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -21,7 +21,7 @@ const User = () => {
   const fetchVendors = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("https://vendor-admin.onrender.com/api/auth/getAllVendors", {
+      const response = await fetch("https://vendoradmin.onrender.com/api/auth/getAllVendors", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -66,7 +66,7 @@ const User = () => {
     if (confirm.isConfirmed) {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`https://vendor-admin.onrender.com/api/auth/vendors/${id}/deactivate`, {
+        const response = await fetch(`https://vendoradmin.onrender.com/api/auth/vendors/${id}/deactivate`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -99,7 +99,7 @@ const User = () => {
     if (confirm.isConfirmed) {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`https://vendor-admin.onrender.com/api/auth/vendors/${id}/activate`, {
+        const response = await fetch(`https://vendoradmin.onrender.com/api/auth/vendors/${id}/activate`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
         });

@@ -9,7 +9,7 @@ import {jwtDecode} from "jwt-decode";
 import profilePlaceholder from "../../Assets/Images/profile.jpg";
 
 // Hardcode API base URL (use http://localhost:5000 for local development)
-const API_BASE_URL = "https://vendor-admin.onrender.com";
+const API_BASE_URL = "https://vendoradmin.onrender.com";
 
 export const Header = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
